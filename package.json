@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Setup your heroku remotes in seconds.",
   "main": "index.js",
+  "bin": "bin/heroku-setup",
   "scripts": {
     "test": "mocha"
   },
@@ -23,5 +24,14 @@
   "bugs": {
     "url": "https://github.com/kreativgebiet/heroku-setup/issues"
   },
-  "homepage": "https://github.com/kreativgebiet/heroku-setup#readme"
+  "homepage": "https://github.com/kreativgebiet/heroku-setup#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.11.6",
+    "liftoff": "^2.3.0",
+    "minimist": "^1.2.0",
+    "ora": "^0.3.0",
+    "v8flags": "^2.0.11"
+  }
 }

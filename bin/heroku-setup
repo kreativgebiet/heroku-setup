@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+require('babel-register')
+
+const Liftoff = require('liftoff')
+const v8flags = require('v8flags')
+const argv = require('minimist')(process.argv.slice(2))
+const ora = require('ora')
+
+const cli = new Liftoff({
+  name: 'heroku-setup',
+  configName: '.heroku',
+  extensions: {
+    'rc': null,
+    '.json': null,
+  },
+  v8flags: v8flags,
+})
+
+const spinner = ora('Initializing heroku-setup').start()
+
+cli.launch({
+  cwd: argv.cwd,
+  require: argv.require,
+  completion: argv.completion,
+}, callback)
+
+cli.on('require', function(name) {
+  spinner.text = 'Requiring module: ' + name
+})
+
+cli.on('requireFail', function(name) {
+  spinner.text = 'Failed loading module: ' + name
+  spinner.fail()
+})
+
+function callback(env) {
+  spinner.succeed()
+
+  const setup = require('../')
+  const config = require(env.configPath)
+  const heroku = setup(config)
+  const remoteSpinner = {}
+
+  Object.keys(config).forEach(remote => {
+    remoteSpinner[remote] = ora('Setting up ' + remote).start()
+  })
+
+  heroku.on('remote-add', function(remote) {
+    remoteSpinner[remote].succeed()
+  })
+
+  heroku.on('error', function(error) {
+    spinner.fail()
+
+    console.log('')
+    console.log('  ' + error)
+  })
+
+  heroku.on('remote-error', function(remote, error) {
+    remoteSpinner[remote].fail()
+  })
+
+}
