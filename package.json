@@ -1,0 +1,27 @@
+{
+  "name": "heroku-setup",
+  "version": "1.0.0",
+  "description": "Setup your heroku remotes in seconds.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kreativgebiet/heroku-setup.git"
+  },
+  "keywords": [
+    "heroku",
+    "remote",
+    "git",
+    "setup",
+    "boilerplate",
+    "easy"
+  ],
+  "author": "Nick Schmidt <nick@kreativgebiet.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kreativgebiet/heroku-setup/issues"
+  },
+  "homepage": "https://github.com/kreativgebiet/heroku-setup#readme"
+}
