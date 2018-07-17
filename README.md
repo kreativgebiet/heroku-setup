@@ -1,4 +1,7 @@
 # heroku-setup
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/kreativgebiet/heroku-setup.svg)](https://greenkeeper.io/)
+
 Setup your heroku remotes in seconds.
 
 ## Installation
